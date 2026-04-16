@@ -40,6 +40,10 @@ char *to_path(char *req) {
     }
 
     // Copy in "index.html", overwriting whatever was there in the request string.
+    if ((size_t)end + strlen(DEFAULT_FILE) + 1 > (size_t)req + strlen(req)) {
+        return NULL;
+    };
+    
     memcpy(
         // 👉 Try refactoring out this + 1 by modifying the `if/else` above.
         end,
